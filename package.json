@@ -4,16 +4,35 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "build": "vue-tsc --noEmit && vite build --watch",
+    "preview": "vite preview",
+    "lint": "eslint ./src/**/*.{js,jsx,ts,tsx,vue} --fix"
   },
   "dependencies": {
-    "vue": "^3.2.25"
+    "@idux/cdk": "^1.0.0-beta.14",
+    "@idux/components": "^1.0.0-beta.14",
+    "@idux/pro": "^1.0.0-beta.14",
+    "pinia": "^2.0.14",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.16",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@types/node": "^17.0.42",
+    "@typescript-eslint/eslint-plugin": "^5.27.0",
+    "@typescript-eslint/parser": "^5.27.0",
     "@vitejs/plugin-vue": "^2.3.3",
+    "@vitejs/plugin-vue-jsx": "^1.3.10",
+    "eslint": "^8.16.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.1",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-vue": "^9.1.0",
+    "less": "^4.1.3",
     "typescript": "^4.5.4",
     "vite": "^2.9.9",
+    "vite-plugin-eslint": "^1.6.1",
     "vue-tsc": "^0.34.7"
   }
 }
