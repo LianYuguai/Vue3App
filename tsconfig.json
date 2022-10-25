@@ -17,7 +17,8 @@
     ],
     "skipLibCheck": true,
     "types": [
-      "vite/client"
+      "vite/client",
+      "node"
     ],
     "paths": {
       "@/*": [
@@ -35,5 +36,5 @@
     {
       "path": "./tsconfig.node.json"
     }
-  ]
+  ],
 }

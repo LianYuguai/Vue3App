@@ -17,6 +17,11 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
-    'vue/multi-word-component-names': 'off'
+    'vue/multi-word-component-names': 'off',
+    'vue/max-attributes-per-line': 'off',
+    'no-tabs': 'off',
+    'vue/first-attribute-linebreak': 'off',
+    'vue/html-closing-bracket-newline': 'off',
+    'vue/html-indent': 'off'
   }
 }

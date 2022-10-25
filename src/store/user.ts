@@ -8,7 +8,9 @@ export const useStore = defineStore('main', {
     sex: ''
   }),
   getters: {
-    getUserName: (state) => state.name
+    getUserName (state) {
+      return state.name
+    }
   },
   actions: {
     getUserInfoAPI: () => {
