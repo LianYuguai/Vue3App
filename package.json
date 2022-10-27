@@ -9,6 +9,7 @@
     "lint": "eslint ./src/**/*.{js,jsx,ts,tsx,vue} --fix"
   },
   "dependencies": {
+    "@antv/g2": "^4.2.8",
     "@idux/cdk": "^1.0.0-beta.14",
     "@idux/components": "^1.0.0-beta.14",
     "@idux/pro": "^1.0.0-beta.14",
