@@ -33,7 +33,6 @@ export const dynamicRouters: RouteRecordRaw[] = [
 export function initDynamicRoutes (router: Router) {
   const permissionStoreOut = usePermissionStoreOut()
   // 根据二级权限，对路由规则进行动态的添加，
-  console.log(router)
   const currentRoutes = router.getRoutes()
   const rightList = (JSON.parse(permissionStoreOut.getRightList)) as {path: string}[]
   const dynamicRoutersActual = [] as RouteRecordRaw[]
@@ -56,6 +55,5 @@ export function initDynamicRoutes (router: Router) {
   }
   router.addRoute(homeRouter)
   permissionStoreOut.setHasDynamicRouter(true)
-  console.log('initDynamicRoutes: ', router.options.routes)
   return true
 }

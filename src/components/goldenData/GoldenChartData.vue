@@ -2,12 +2,14 @@
   <div id="golden-data-chart" class="chart" />
 </template>
 <script lang="ts" setup>
-import { onMounted } from 'vue'
-import { EChartsOption, init } from 'echarts'
+import { onMounted, defineProps, watchEffect, onBeforeMount, onBeforeUnmount } from 'vue'
+import { EChartsOption, EChartsType, init } from 'echarts'
+import { GoldenchamData } from '@/api/godenChamData'
+let chart: EChartsType
 onMounted(() => {
   const chartEle: HTMLElement = document.getElementById('golden-data-chart') as HTMLElement
-  const chart = init(chartEle)
-  const data: number[] = [99.4, 99.3, 99.0]
+  chart = init(chartEle)
+  const data: number[] = []
 
   const option: EChartsOption = {
     title: {
@@ -32,7 +34,7 @@ onMounted(() => {
     },
     yAxis: {
       type: 'category',
-      data: ['FH0000 PM-4', 'FH0000 PM-3', 'FH0000 PM-2'],
+      data: [],
       inverse: true,
       animationDuration: 300,
       animationDurationUpdate: 300,
@@ -43,21 +45,13 @@ onMounted(() => {
         show: true,
         interval: 0,
         formatter: function (value: any) {
-          const [first, second] = value.split(' ')
+          const [first, second] = value.split('/')
           const [p, m, flag, num] = second.split('')
           return p + '\n' + first + ' ' + m + '\n' + flag + num
         },
         color: '#fff'
-        // rich: {
-        //   flag: {
-        //     fontSize: 10,
-        //     padding: 5,
-        //     width: 400,
-        //     color: '#fff'
-        //   }
-        // }
-      },
-      max: 2 // only the largest 3 bars will be displayed
+      }
+      // max: 2 // only the largest 3 bars will be displayed
     },
     series: [
       {
@@ -69,11 +63,14 @@ onMounted(() => {
           show: true,
           position: 'right',
           valueAnimation: true,
-          color: '#fff'
+          color: '#fff',
+          formatter: function (data: any) {
+            return data.value + '%'
+          }
         },
         itemStyle: {
           color: function (param) {
-            return param.value > 120 ? 'yellow' : 'gray'
+            return param.value > 99 ? 'yellow' : 'gray'
           }
         }
       }
@@ -87,31 +84,37 @@ onMounted(() => {
     animationEasingUpdate: 'linear'
   }
   chart && chart.setOption(option)
+})
 
-  // function run () {
-  //   for (let i = 0; i < data.length; ++i) {
-  //     if (Math.random() > 0.9) {
-  //       data[i] += Math.round(Math.random() * 2000)
-  //     } else {
-  //       data[i] += Math.round(Math.random() * 200)
-  //     }
-  //   }
-  //   chart.setOption<EChartsOption>({
-  //     series: [
-  //       {
-  //         type: 'bar',
-  //         data
-  //       }
-  //     ]
-  //   })
-  // }
-
-  // setTimeout(function () {
-  //   run()
-  // }, 0)
-  // setInterval(function () {
-  //   run()
-  // }, 3000)
+const props = defineProps<{
+  chartData: GoldenchamData[]
+}>()
+watchEffect(() => {
+  const data = props.chartData
+  console.log('watchEffect: ', data)
+  const seriesData = data.map(item => {
+    return item.matchRatio
+  })
+  const yAxisData = data.map(item => {
+    return item.toolChamber
+  })
+  chart && chart.setOption<EChartsOption>({
+    series: {
+      data: seriesData
+    },
+    yAxis: {
+      data: yAxisData as []
+    }
+  })
+})
+const resizeChart = () => {
+  chart && chart.resize()
+}
+onBeforeMount(() => {
+  window.addEventListener('resize', resizeChart)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', resizeChart)
 })
 </script>
 <style lang="less" scoped>

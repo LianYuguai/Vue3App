@@ -31,8 +31,6 @@ const router = createRouter({
   routes
 })
 router.beforeEach((to, from, next) => {
-  console.log('*****beforeEach: ', to, router.options.routes)
-
   if (to.path === '/login') {
     next()
   } else {

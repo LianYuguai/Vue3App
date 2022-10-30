@@ -2,7 +2,7 @@
   <div class="trend-box">
     <div class="top-box">
       <div class="content">
-        <GoldenChartData :style="{'flex-grow': 1}" />
+        <GoldenChartData :style="{'flex-grow': 1}" :chart-data="goldenChartData" />
       </div>
       <div class="content">
         <G2GChartData class="g2g" />
@@ -15,7 +15,6 @@
       </div>
       <div class="content-small" />
     </div>
-    <div id="g2" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -23,29 +22,27 @@ import GoldenChartData from '@/components/goldenData/index.vue'
 import G2GChartData from '@/components/g2gData/index.vue'
 import OerChartData from '@/components/oerData/index.vue'
 import OocChartData from '@/components/oocData/index.vue'
-import * as G2 from '@antv/g2'
-import { onMounted } from 'vue'
+
+import { getGoldenchamDataAPI, GoldenchamData } from '@/api/godenChamData'
+import { getG2GAPI } from '@/api/g2g'
+import { getOerAPI } from '@/api/oer'
+import { getOocAPI } from '@/api/ooc'
+import { onMounted, ref } from 'vue'
+
+const goldenChartData = ref([] as GoldenchamData[])
 onMounted(() => {
-  const data = [
-    { genre: 'Sports', sold: 275 },
-    { genre: 'Strategy', sold: 115 },
-    { genre: 'Action', sold: 120 },
-    { genre: 'Shooter', sold: 350 },
-    { genre: 'Other', sold: 150 }
-  ] // G2 对数据源格式的要求，仅仅是 JSON 数组，数组的每个元素是一个标准 JSON 对象。
-  // Step 1: 创建 Chart 对象
-  const chart = new G2.Chart({
-    container: 'g2', // 指定图表容器 ID
-    width: 600, // 指定图表宽度
-    height: 300 // 指定图表高度
-  })
-  // Step 2: 载入数据源
-  chart.data(data)
-  // Step 3：创建图形语法，绘制柱状图，由 genre 和 sold 两个属性决定图形位置，genre 映射至 x 轴，sold 映射至 y 轴
-  chart.line().position('genre*sold')
-  // Step 4: 渲染图表
-  chart.render()
+  getGolenchamData()
+  getG2GAPI()
+  getOerAPI()
+  getOocAPI()
 })
+
+async function getGolenchamData () {
+  const res = await getGoldenchamDataAPI()
+  console.log('getGolenchamData: ', res)
+  goldenChartData.value = res.data
+}
+
 </script>
 <style lang="less" scoped>
 .trend-box {

@@ -1,6 +1,6 @@
 <template>
   <div class="gold-data-box">
-    <GoldenChartData style="background-color: rgb(42, 42, 42)" />
+    <GoldenChartData style="background-color: rgb(42, 42, 42)" :chart-data="chartData" />
     <div class="content" style="background-color: rgb(42, 42, 42)">
       <div class="text-title">
         Golden Chamber
@@ -29,6 +29,11 @@
 </template>
 <script lang="ts" setup>
 import GoldenChartData from '@/components/goldenData/GoldenChartData.vue'
+import { defineProps } from 'vue'
+import { GoldenchamData } from '@/api/godenChamData'
+defineProps<{
+  chartData: GoldenchamData[]
+}>()
 
 </script>
 <style lang="less" scoped>
