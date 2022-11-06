@@ -29,7 +29,6 @@
 </template>
 <script lang="ts" setup>
 import GoldenChartData from '@/components/goldenData/GoldenChartData.vue'
-import { defineProps } from 'vue'
 import { GoldenchamData } from '@/api/godenChamData'
 defineProps<{
   chartData: GoldenchamData[]

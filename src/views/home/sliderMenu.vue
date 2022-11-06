@@ -25,7 +25,9 @@ const dataSource = computed<MenuData[]>(() => {
   const menuRouters = router.getRoutes().filter(router => {
     return router.path.includes('/home/')
   })
-  return menuRouters.map(router => {
+  return menuRouters.filter(item => {
+    return item.meta.isMenu === true
+  }).map(router => {
     return {
       key: router.path,
       label: router.meta.title,
@@ -37,6 +39,13 @@ const dataSource = computed<MenuData[]>(() => {
 watch(
   () => route.path,
   path => {
+    const findItem = dataSource.value.find(item => {
+      return item.key === path
+    })
+    // 路由地址不是菜单栏地址时，不做任何处理
+    if (!findItem) {
+      return
+    }
     console.log('route.path***: ', path.split('/'))
     const [, expandedKey, selectedKey] = path.split('/')
     console.log('route.path: ', path, expandedKey, selectedKey)

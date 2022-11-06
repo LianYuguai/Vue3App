@@ -2,7 +2,7 @@
   <div class="trend-box">
     <div class="top-box">
       <div class="content">
-        <GoldenChartData :style="{'flex-grow': 1}" :chart-data="goldenChartData" />
+        <GoldenChartData :style="{ 'flex-grow': 1 }" :chart-data="goldenChartData" />
       </div>
       <div class="content">
         <G2GChartData class="g2g" />
@@ -13,7 +13,11 @@
       <div class="content-large">
         <OocChartData />
       </div>
-      <div class="content-small" />
+      <div class="content-small">
+        <div class="text" @click="goNextPage">
+          click here
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -28,6 +32,8 @@ import { getG2GAPI } from '@/api/g2g'
 import { getOerAPI } from '@/api/oer'
 import { getOocAPI } from '@/api/ooc'
 import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const goldenChartData = ref([] as GoldenchamData[])
 onMounted(() => {
@@ -43,27 +49,39 @@ async function getGolenchamData () {
   goldenChartData.value = res.data
 }
 
+function goNextPage () {
+  router.push({
+    path: '/home/test'
+  })
+}
+
 </script>
 <style lang="less" scoped>
 .trend-box {
   max-height: 100%;
   overflow: scroll;
   background-color: black;
-  .top-box{
+
+  .top-box {
     display: flex;
-    .content{
+
+    .content {
       width: 50%;
-      .g2g{
+
+      .g2g {
         height: 139px;
       }
-      .oer{
+
+      .oer {
         height: 159px;
       }
     }
-    .content-large{
+
+    .content-large {
       width: 60%;
     }
-    .content-small{
+
+    .content-small {
       width: 40%;
     }
   }

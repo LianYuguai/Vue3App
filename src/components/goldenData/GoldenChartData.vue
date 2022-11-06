@@ -2,7 +2,7 @@
   <div id="golden-data-chart" class="chart" />
 </template>
 <script lang="ts" setup>
-import { onMounted, defineProps, watchEffect, onBeforeMount, onBeforeUnmount } from 'vue'
+import { onMounted, watchEffect, onBeforeMount, onBeforeUnmount } from 'vue'
 import { EChartsOption, EChartsType, init } from 'echarts'
 import { GoldenchamData } from '@/api/godenChamData'
 let chart: EChartsType
