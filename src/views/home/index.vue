@@ -22,8 +22,8 @@ import Header from './header/index.vue'
 </script>
 <style lang="less" scoped>
 .main-layout {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
 
   .header {
     // background-color: aqua;

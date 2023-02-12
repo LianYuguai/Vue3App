@@ -3,7 +3,7 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 </script>
 
-<template>
+<!-- <template>
   <IxDrawerProvider ref="drawerProviderRef">
     <IxModalProvider ref="modalProviderRef">
       <IxNotificationProvider>
@@ -13,6 +13,11 @@
       </IxNotificationProvider>
     </IxModalProvider>
   </IxDrawerProvider>
+</template> -->
+<template>
+  <div>
+    <router-view />
+  </div>
 </template>
 
 <style>

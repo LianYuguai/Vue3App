@@ -5,8 +5,8 @@ import IduxCdk from '@idux/cdk'
 import IduxComponents from '@idux/components'
 import IduxPro from '@idux/pro'
 
-import '@idux/components/default.min.css'
-import '@idux/pro/default.min.css'
+import '@idux/components/default.full.less'
+import '@idux/pro/default.less'
 
 import { createGlobalConfig } from '@idux/components/config'
 import {

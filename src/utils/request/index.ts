@@ -1,6 +1,7 @@
 // service统一出口
 import HYRequest from './request'
 import { BASE_URL, TIME_OUT } from './config'
+import { AxiosRequestHeaders } from 'axios'
 
 console.log('BASE_URL*****: ', BASE_URL, import.meta.env.VITE_APP_BASE_URL)
 
@@ -14,21 +15,13 @@ const hyRequest = new HYRequest({
   interceptors: {
     requestInterceptor: (config) => {
       // 给当前请求实例所有的请求添加token
-      const token = ''
-      if (token) {
-        // 模板字符串进行拼接
-        const customConfig = {
-          headers: {
-            token: 'token1'
-          }
-        }
-        config = {
-          ...config, ...customConfig
-        }
-      }
-
       console.log('请求成功的拦截')
-      return config
+      const headers = config.headers as AxiosRequestHeaders
+      headers.token = 'xxxxx'
+      return {
+        ...config,
+        headers
+      }
     },
     requestInterceptorCatch: (err) => {
       console.log('请求失败的拦截')

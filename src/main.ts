@@ -4,6 +4,7 @@ import Idux from './idux'
 import { createPinia } from 'pinia'
 import router from './router'
 import '@/common/style/idux.less'
+
 const app = createApp(App)
 const pinia = createPinia()
 app.use(pinia)
