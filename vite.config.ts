@@ -6,6 +6,7 @@ import eslintPlugin from 'vite-plugin-eslint'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 // mock服务
 import { viteMockServe } from 'vite-plugin-mock'
 // icon
@@ -74,6 +75,12 @@ export default defineConfig({
     }),
     Icons({
       autoInstall: true
+    }),
+    createSvgIconsPlugin({
+      // 指定要缓存的图标文件夹
+      iconDirs: [path.resolve(process.cwd(), 'src/assets/icon-svg')],
+      // 执行icon name的格式
+      symbolId: 'icon-[name]'
     })
   ],
   optimizeDeps: {
@@ -124,7 +131,8 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       less: {
-        javascriptEnabled: true
+        javascriptEnabled: true,
+        additionalData: '@import "@/common/styles/variables.less";'
       }
     }
   }

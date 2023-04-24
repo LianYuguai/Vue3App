@@ -8,22 +8,19 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AntvChartData: typeof import('./src/components/antvData/antvChartData.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElForm: typeof import('element-plus/es')['ElForm']
-    ElFormItem: typeof import('element-plus/es')['ElFormItem']
-    ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
+    ElTooltip: typeof import('element-plus/es')['ElTooltip']
     G2gChartData: typeof import('./src/components/g2gData/g2gChartData.vue')['default']
     G2gData: typeof import('./src/components/g2gData/index.vue')['default']
     GoldenChartData: typeof import('./src/components/goldenData/GoldenChartData.vue')['default']
     GoldenData: typeof import('./src/components/goldenData/index.vue')['default']
-    IEpHide: typeof import('~icons/ep/hide')['default']
-    IEpView: typeof import('~icons/ep/view')['default']
+    IconSvg: typeof import('./src/components/common/IconSvg/index.vue')['default']
     OerCharData: typeof import('./src/components/oerData/oerCharData.vue')['default']
     OerData: typeof import('./src/components/oerData/index.vue')['default']
     OocChartData: typeof import('./src/components/oocData/oocChartData.vue')['default']
     OocData: typeof import('./src/components/oocData/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SysTipInput: typeof import('./src/components/common/SysTipInput/index.vue')['default']
   }
 }

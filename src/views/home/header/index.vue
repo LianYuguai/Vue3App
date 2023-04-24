@@ -19,15 +19,17 @@ const onLogout = function () {
 }
 </script>
 <style lang="less" scoped>
-.header-box{
+.header-box {
   width: 100%;
-  height: 100%;
+  height: 60px;
   display: flex;
   align-items: center;
-  .title{
+
+  .title {
     margin: 0 auto;
   }
-  .tool{
+
+  .tool {
     cursor: pointer;
     color: blue;
   }

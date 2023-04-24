@@ -11,6 +11,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
+    "allowJs": true,
     "lib": [
       "esnext",
       "dom"
@@ -19,6 +20,7 @@
     "types": [
       "vite/client",
       "node",
+      "vite-plugin-svg-icons/client"
     ],
     "paths": {
       "@/*": [
